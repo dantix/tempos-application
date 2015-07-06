@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="me.dantix.tempos" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Tempos</name>
+    <description>
+        Tempos - task warrior client
+    </description>
+    <author email="danteek@gmail.com">
+        Roman Golovin
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <icon src="www/icon.png" />
+    <engine name="android" spec="^4.0.0" />
+</widget>
