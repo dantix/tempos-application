@@ -1,23 +1,62 @@
 import React from 'react';
+
 import mui, { Card, CardTitle, CardText } from 'material-ui';
+const Colors = mui.Styles.Colors;
 
 import moment from 'moment';
 
-const Colors = mui.Styles.Colors;
-
 export default class TaskListItem extends React.Component {
+  static propTypes = {
+    task: React.PropTypes.object.isRequired,
+  }
+
   static contextTypes = {
-    router: React.PropTypes.func
+    history: React.PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
   }
 
+  _handleClick(path, params) {
+    this.context.history.pushState(null, `/tasks/${params.uuid}`);
+  }
+
   render() {
-    const cardStyle = {
-      margin: '10px',
-      cursor: 'pointer'
+    const fontSize = '22px';
+
+    const styles = {
+      card: {
+        margin: '10px',
+        cursor: 'pointer',
+      },
+      cardTitle: {
+        padding: '16px 16px 4px 16px',
+      },
+      cardText: {
+        padding: '4px 16px 16px 16px',
+      },
+      recur: {
+        display: 'inline-block',
+        width: '40%',
+      },
+      due: {
+        display: 'inline-block',
+        width: '60%',
+      },
+      icon: {
+        color: Colors.grey600,
+        fontSize: fontSize,
+        'float': 'left',
+      },
+      text: {
+        color: Colors.orange600,
+        'float': 'left',
+        display: 'flex',
+        alignItems: 'center',
+        height: fontSize,
+        marginLeft: '5px',
+      },
     };
 
     const { task } = this.props;
@@ -27,32 +66,28 @@ export default class TaskListItem extends React.Component {
     let recur;
     if (task.recur) {
       recur = (
-          <div style={{ 'display': 'inline-block', width: '40%'}}>
-            <span style={{ color: Colors.grey600 }}>Recurrence: </span>
-            <span style={{ color: Colors.orange600 }}>{ task.recur }</span>
+          <div style={ styles.recur }>
+            <span style={ styles.icon } className="mdi mdi-refresh"></span>
+            <span style={ styles.text }>{ task.recur }</span>
           </div>
         );
     }
 
     return (
-      <Card key={task.uuid}
-            style={cardStyle}
+      <Card key={ task.uuid }
+            style={ styles.card }
             onClick={ () => this._handleClick('task-details', { uuid: task.uuid }) } >
-        <CardTitle style={{ padding: '16px 16px 4px 16px' }}
+        <CardTitle style={ styles.cardTitle }
                    title={ task.description }
                    subtitle={ task.project }/>
-        <CardText style={{ padding: '4px 16px 16px 16px' }}>
-          <div style={{ 'display': 'inline-block', width: '60%'}}>
-            <span style={{ color: Colors.grey600 }}>Due: </span>
-            <span style={{ color: Colors.orange600 }}>{ due }</span>
+        <CardText style={ styles.cardText }>
+          <div style={ styles.due }>
+            <span style={ styles.icon } className="mdi mdi-clock"></span>
+            <span style={ styles.text }>{ due }</span>
           </div>
-          {recur}
+          { recur }
         </CardText>
       </Card>
     );
-  }
-
-  _handleClick(path, params) {
-    this.context.router.transitionTo(path, params);
   }
 }

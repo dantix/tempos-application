@@ -1,54 +1,43 @@
 import React from 'react';
-import mui, { FloatingActionButton } from 'material-ui';
+import { FloatingActionButton } from 'material-ui';
 
 import TaskListItem from './task-list-item.jsx';
 
-import { connect } from 'redux/react';
-
-const ThemeManager = new mui.Styles.ThemeManager();
-const Colors = mui.Styles.Colors;
+import { connect } from 'react-redux';
 
 @connect((state) => ({
-  tasks: state.TaskStore.tasks,
-  context: state.TaskStore.context
+  tasks: state.task.tasks,
+  context: state.task.context,
 }))
 export default class TaskList extends React.Component {
+  static propTypes = {
+    tasks: React.PropTypes.array.isRequired,
+  }
+
   static contextTypes = {
-    router: React.PropTypes.func
+    router: React.PropTypes.func,
   };
 
   static childContextTypes = {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   };
 
   constructor(props) {
     super(props);
   }
 
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
-  }
-
-  componentWillMount() {
-    ThemeManager.setPalette({
-      accent1Color: Colors.orange500
-    });
-  }
-
   render() {
     const addButtonStyle = {
       position: 'fixed',
       bottom: 20,
-      right: 20
+      right: 20,
     };
 
-    let { tasks } = this.props;
+    const { tasks } = this.props;
 
     const items = tasks
-      .sort((a, b) => {
-        return b.urgency - a.urgency;
+      .sort((first, second) => {
+        return second.urgency - first.urgency;
       })
     .map((item) => {
       return (
@@ -61,12 +50,8 @@ export default class TaskList extends React.Component {
         {items}
 
         <FloatingActionButton style={addButtonStyle}
-                              iconClassName='mdi mdi-plus' />
+                              iconClassName="mdi mdi-plus" />
       </div>
     );
-  }
-
-  handleClick(path, params) {
-    this.context.router.transitionTo(path, params);
   }
 }
