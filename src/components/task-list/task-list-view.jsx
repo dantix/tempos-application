@@ -2,52 +2,65 @@ import React from 'react';
 
 import Layout from '../main/layout.jsx';
 
-import NavigationDrawer from '../navigation-drawer/navigation-drawer.js';
+import NavigationDrawer from '../navigation-drawer/navigation-drawer.jsx';
 
 import * as TaskActions from '../../actions/task-list.js';
 
-import { connect } from 'redux/react';
+import { connect } from 'react-redux';
 
+import lightTheme from '../../themes/light.js';
+
+import themeManager from 'material-ui/lib/styles/theme-manager';
+import themeDecorator from 'material-ui/lib/styles/theme-decorator';
+
+@themeDecorator(themeManager.getMuiTheme(lightTheme))
 @connect(state => ({
-  projects: state.TaskStore.projects,
-  context: state.TaskStore.context,
-  loading: state.TaskStore.loading
+  projects: state.task.projects,
+  context: state.task.context,
 }))
 export default class TaskListView extends React.Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+    projects: React.PropTypes.array.isRequired,
+    context: React.PropTypes.object.isRequired,
+    children: React.PropTypes.node.isRequired,
   }
 
   static contextTypes = {
-    router: React.PropTypes.func
+    router: React.PropTypes.func,
   };
+
+  constructor(props) {
+    super(props);
+  }
 
   componentWillMount() {
     const { dispatch, context } = this.props;
     dispatch(TaskActions.switchContext(context));
   }
 
+  _onMenuLeftButtonClick() {
+    this.refs.nav.toggle();
+  }
+
   render() {
-    const { dispatch, context, projects, loading } = this.props;
+    const { dispatch, context, projects, children } = this.props;
 
     const appBar = {
       title: context.value,
       leftIconClass: 'mdi mdi-menu',
-      onLeftClick: () => this._onMenuLeftButtonClick()
+      onLeftClick: () => this._onMenuLeftButtonClick(),
     };
 
     return (
         <div>
-          <Layout appBar={appBar} />
-          <NavigationDrawer ref="nav"
-                            context={context}
-                            projects={projects}
-                            dispatch={dispatch} />
+          <Layout appBar={appBar} children={children} />
+          <NavigationDrawer
+            ref="nav"
+            context={context}
+            projects={projects}
+            dispatch={dispatch} />
         </div>
     );
-  }
-
-  _onMenuLeftButtonClick() {
-    this.refs.nav.toggle();
   }
 }

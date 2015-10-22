@@ -33,7 +33,7 @@ export function getTask(id) {
   return {
     types: [ ActionTypes.TASK_DETAILS_GET, ActionTypes.TASK_DETAILS_GET_SUCCESS, ActionTypes.TASK_DETAILS_GET_FAIL ],
     id: id,
-    promise
+    promise,
   };
 }
 
@@ -46,6 +46,6 @@ export function switchContext(context) {
   return {
     types: [ ActionTypes.TASKS_SWITCH_CONTEXT, ActionTypes.TASKS_SWITCH_CONTEXT_SUCCESS, ActionTypes.TASKS_SWITCH_CONTEXT_FAIL ],
     context: context,
-    promise
+    promise,
   };
 }

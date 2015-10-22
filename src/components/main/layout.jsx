@@ -1,35 +1,25 @@
 import React from 'react';
 
-import { RouteHandler } from 'react-router';
-import mui, { AppBar, LinearProgress } from 'material-ui';
+import Radium from 'radium';
 
-import { connect } from 'redux/react';
+import { AppBar, LinearProgress } from 'material-ui';
 
-const ThemeManager = new mui.Styles.ThemeManager();
-const Colors = mui.Styles.Colors;
+import { connect } from 'react-redux';
 
 @connect(state => ({
-  loading: state.TaskStore.loading
+  loading: state.task.loading,
 }))
+@Radium
 export default class Layout extends React.Component {
-  static childContextTypes = {
-    muiTheme: React.PropTypes.object
-  };
+  static propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+    loading: React.PropTypes.bool,
+    appBar: React.PropTypes.object.isRequired,
+    children: React.PropTypes.node.isRequired,
+  }
 
   constructor(props, context) {
     super(props, context);
-  }
-
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
-  }
-
-  componentWillMount() {
-    ThemeManager.setPalette({
-      primary1Color: Colors.indigo900
-    });
   }
 
   render() {
@@ -37,24 +27,23 @@ export default class Layout extends React.Component {
       appBar: {
         position: 'fixed',
         top: '0px',
-        left: '0px'
+        left: '0px',
       },
       pageContainer: {
         position: 'relative',
         width: '100%',
-        height: 'calc(100vh - 74px)'
+        height: 'calc(100vh - 74px)',
       },
       progress: {
         position: 'fixed',
-        top: '64px'
+        top: '64px',
       },
       contentContainer: {
-        marginTop: '74px'
-      }
+        marginTop: '74px',
+      },
     };
 
-    const { dispatch, loading } = this.props;
-    let { appBar } = this.props;
+    const { loading, appBar } = this.props;
 
     let progress;
     if (loading) {
@@ -70,11 +59,10 @@ export default class Layout extends React.Component {
                 iconClassNameLeft={ appBar.leftIconClass }
                 iconClassNameRight={ appBar.rightIconClass }
                 onLeftIconButtonTouchTap={ appBar.onLeftClick }
-                onRightIconButtonTouchTap={ appBar.onRightClick }
-                />
+                onRightIconButtonTouchTap={ appBar.onRightClick } />
         {progress}
         <div style={styles.contentContainer}>
-          <RouteHandler dispatch={dispatch} />
+          {this.props.children}
         </div>
       </div>
     );
