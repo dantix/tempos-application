@@ -18,6 +18,8 @@ import TaskDetails from './components/task-details/task-details.jsx';
 require('style!css!../node_modules/normalize-css/normalize.css');
 require('style!css!../node_modules/mdi/css/materialdesignicons.css');
 
+import DevTools from './containers/dev-tools.jsx';
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -35,8 +37,16 @@ const routes = (
   </Route>
 );
 
+let devtools;
+if (__DEVELOPMENT__ && __DEVTOOLS__) {
+  devtools = (<DevTools />);
+}
+
 ReactDOM.render((
   <Provider store={store}>
-    <Router history={history}>{routes}</Router>
+    <div>
+      <Router history={history}>{routes}</Router>
+      { devtools }
+    </div>
   </Provider>),
 document.getElementById('app'));

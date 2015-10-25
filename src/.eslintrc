@@ -6,7 +6,9 @@
   },
   "globals": {
     "cordova": true,
-    "__APIURL__": true
+    "__APIURL__": true,
+    "__DEVELOPMENT__": true,
+    "__DEVTOOLS__": true
   },
   "rules": {
     "react/jsx-uses-react": 2,
