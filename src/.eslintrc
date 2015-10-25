@@ -5,6 +5,7 @@
     "node": true
   },
   "globals": {
+    "cordova": true,
     "__APIURL__": true
   },
   "rules": {
