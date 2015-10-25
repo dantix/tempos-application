@@ -18,13 +18,15 @@ export default function task(state = initialState, action) {
   case ActionTypes.TASKS_SWITCH_CONTEXT:
     return {
       ...state,
-      context: action.context,
+      context: action.payload.context,
     };
   case ActionTypes.TASKS_SWITCH_CONTEXT_SUCCESS:
+    const [tasks, projects] = action.payload.result;
+
     return {
       ...state,
-      tasks: action.result[0],
-      projects: action.result[1],
+      tasks,
+      projects,
     };
   case ActionTypes.TASK_DETAILS_GET:
     const currentTask = state.tasks.filter((t) => (t.uuid === action.id))[0] || {};
@@ -36,7 +38,7 @@ export default function task(state = initialState, action) {
   case ActionTypes.TASK_DETAILS_GET_SUCCESS:
     return {
       ...state,
-      currentTask: action.result[0],
+      currentTask: action.payload.result[0],
     };
   default:
     if (!action.type) {

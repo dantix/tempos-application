@@ -31,9 +31,12 @@ export function getTask(id) {
   const promise = _getTask(id);
 
   return {
-    types: [ ActionTypes.TASK_DETAILS_GET, ActionTypes.TASK_DETAILS_GET_SUCCESS, ActionTypes.TASK_DETAILS_GET_FAIL ],
-    id: id,
-    promise,
+    type: ActionTypes.META_API_CALL,
+    payload: {
+      types: [ ActionTypes.TASK_DETAILS_GET, ActionTypes.TASK_DETAILS_GET_SUCCESS, ActionTypes.TASK_DETAILS_GET_FAIL ],
+      id,
+      promise,
+    },
   };
 }
 
@@ -44,8 +47,11 @@ export function switchContext(context) {
   const promise = Promise.all([ taskPromise, projectPromise ]);
 
   return {
-    types: [ ActionTypes.TASKS_SWITCH_CONTEXT, ActionTypes.TASKS_SWITCH_CONTEXT_SUCCESS, ActionTypes.TASKS_SWITCH_CONTEXT_FAIL ],
-    context: context,
-    promise,
+    type: ActionTypes.META_API_CALL,
+    payload: {
+      types: [ ActionTypes.TASKS_SWITCH_CONTEXT, ActionTypes.TASKS_SWITCH_CONTEXT_SUCCESS, ActionTypes.TASKS_SWITCH_CONTEXT_FAIL ],
+      context,
+      promise,
+    },
   };
 }
