@@ -15,9 +15,10 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       __APIURL__: JSON.stringify(process.env.APIURL || 'http://localhost:3001'),
+      __DEVELOPMENT__: true,
+      __DEVTOOLS__: true,
     }),
   ],
   module: {
