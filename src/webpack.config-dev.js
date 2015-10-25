@@ -16,6 +16,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      __APIURL__: JSON.stringify(process.env.APIURL || 'http://localhost:3001'),
+    }),
   ],
   module: {
     loaders: [{

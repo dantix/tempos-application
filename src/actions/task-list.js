@@ -2,7 +2,7 @@ import * as ActionTypes from '../constants/actionTypes.js';
 
 import fetch from 'isomorphic-fetch';
 
-const ApiUri = 'http://localhost:3001';
+const ApiUri = __APIURL__;
 
 function _getTasks(context) {
   let params = 'status=pending';

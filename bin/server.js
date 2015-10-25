@@ -11,6 +11,9 @@ var dev = require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath,
 });
 
+var port = process.env.PORT || 3002;
+var host = process.env.HOST || 'localhost';
+
 app.use(dev);
 
 app.use(require('webpack-hot-middleware')(compiler));
@@ -27,11 +30,11 @@ app.get('*', function(req, res) {
   });
 });
 
-app.listen(3002, 'localhost', function(err) {
+app.listen(port, host, function(err) {
   if (err) {
     console.log(err);
     return;
   }
 
-  console.log('Listening at http://localhost:3002');
+  console.log('Listening at http://' + host + ':' + port);
 });
