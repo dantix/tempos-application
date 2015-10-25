@@ -16,6 +16,7 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production'),
       },
+      __APIURL__: JSON.stringify(process.env.APIURL || 'http://localhost:3001'),
     }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {

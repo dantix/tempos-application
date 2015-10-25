@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Router, { Route, IndexRoute } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
+import createHashHistory from 'history/lib/createHashHistory';
 
 import { Provider } from 'react-redux';
 
@@ -21,7 +22,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 const store = configureStore();
-const history = createBrowserHistory();
+const history = typeof cordova !== 'undefined' ? createHashHistory() : createBrowserHistory();
 
 const routes = (
   <Route>
