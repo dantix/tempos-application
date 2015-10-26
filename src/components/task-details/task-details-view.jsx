@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Layout from '../main/layout.jsx';
-import * as TaskActions from '../../actions/task-list.js';
+import { getTask } from '../../actions';
 
 @connect(() => ({})) // HACK: Workaround to get dispatch, should be handled by router
 export default class TaskListView extends React.Component {
@@ -22,9 +22,8 @@ export default class TaskListView extends React.Component {
 
   componentWillMount() {
     const { dispatch, params } = this.props;
-    dispatch(TaskActions.getTask(params.uuid));
+    dispatch(getTask(params.uuid));
   }
-
 
   render() {
     const appBar = {

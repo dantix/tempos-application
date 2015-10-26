@@ -5,15 +5,11 @@ const Colors = mui.Styles.Colors;
 
 import { connect } from 'react-redux';
 
-@connect((state) => ({ task: state.task.currentTask }))
+@connect(state => ({ task: state.task.current }))
 export default class TaskDetails extends React.Component {
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
-  };
-
-  static childContextTypes = {
-    muiTheme: React.PropTypes.object,
   };
 
   constructor(props) {

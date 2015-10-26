@@ -4,7 +4,7 @@ import Layout from '../main/layout.jsx';
 
 import NavigationDrawer from '../navigation-drawer/navigation-drawer.jsx';
 
-import * as TaskActions from '../../actions/task-list.js';
+import { getProjects, getTasks } from '../../actions';
 
 import { connect } from 'react-redux';
 
@@ -15,8 +15,8 @@ import themeDecorator from 'material-ui/lib/styles/theme-decorator';
 
 @themeDecorator(themeManager.getMuiTheme(lightTheme))
 @connect(state => ({
-  projects: state.task.projects,
-  context: state.task.context,
+  projects: state.projects.list,
+  context: state.application.context,
 }))
 export default class TaskListView extends React.Component {
   static propTypes = {
@@ -36,7 +36,8 @@ export default class TaskListView extends React.Component {
 
   componentWillMount() {
     const { dispatch, context } = this.props;
-    dispatch(TaskActions.switchContext(context));
+    dispatch(getProjects());
+    dispatch(getTasks(context));
   }
 
   _onMenuLeftButtonClick() {
