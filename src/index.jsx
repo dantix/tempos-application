@@ -18,6 +18,8 @@ import TaskDetails from './components/task-details/task-details.jsx';
 require('style!css!../node_modules/normalize-css/normalize.css');
 require('style!css!../node_modules/mdi/css/materialdesignicons.css');
 
+require('babel/polyfill');
+
 import DevTools from './containers/dev-tools.jsx';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
