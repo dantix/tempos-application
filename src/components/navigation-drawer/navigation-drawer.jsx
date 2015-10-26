@@ -2,7 +2,7 @@ import React from 'react';
 
 import { LeftNav } from 'material-ui';
 
-import * as TaskActions from '../../actions/task-list.js';
+import { switchContext } from '../../actions';
 
 let menuItems = [
   { type: 'aggregatedTasks', text: 'All tasks', iconClassName: 'mdi mdi-view-list', current: true },
@@ -59,7 +59,7 @@ export default class NavigationDrawer extends React.Component {
         value: payload.text,
       };
 
-      dispatch(TaskActions.switchContext(context));
+      dispatch(switchContext(context));
     }
   }
 

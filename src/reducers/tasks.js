@@ -1,24 +1,23 @@
 import * as ActionTypes from '../constants/actionTypes.js';
 
 const initialState = {
-  current: {},
+  list: [],
   loading: false,
 };
 
-export default function task(state = initialState, action) {
+export default function projects(state = initialState, action) {
   state.loading = action.loading;
 
   switch (action.type) {
-  case ActionTypes.TASK_DETAILS_GET:
+  case ActionTypes.TASKS_GET:
     return {
       ...state,
-      current: {},
       loading: true,
     };
-  case ActionTypes.TASK_DETAILS_GET_SUCCESS:
+  case ActionTypes.TASKS_GET_SUCCESS:
     return {
       ...state,
-      current: action.payload.result[0],
+      list: action.payload.result,
       loading: false,
     };
   default:
