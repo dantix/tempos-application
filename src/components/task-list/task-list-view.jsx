@@ -4,7 +4,7 @@ import Layout from '../main/layout.jsx';
 
 import NavigationDrawer from '../navigation-drawer/navigation-drawer.jsx';
 
-import { getProjects, getTasks } from '../../actions';
+import { getProjects, getTasks, switchContext } from '../../actions';
 
 import { connect } from 'react-redux';
 
@@ -17,13 +17,19 @@ import themeDecorator from 'material-ui/lib/styles/theme-decorator';
 @connect(state => ({
   projects: state.projects.list,
   context: state.application.context,
-}))
+}), {
+  getProjects,
+  getTasks,
+  onSwitchContext: switchContext,
+})
 export default class TaskListView extends React.Component {
   static propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
     projects: React.PropTypes.array.isRequired,
     context: React.PropTypes.object.isRequired,
     children: React.PropTypes.node.isRequired,
+    getProjects: React.PropTypes.func.isRequired,
+    getTasks: React.PropTypes.func.isRequired,
+    onSwitchContext: React.PropTypes.func.isRequired,
   }
 
   static contextTypes = {
@@ -35,9 +41,10 @@ export default class TaskListView extends React.Component {
   }
 
   componentWillMount() {
-    const { dispatch, context } = this.props;
-    dispatch(getProjects());
-    dispatch(getTasks(context));
+    const { context } = this.props;
+
+    this.props.getProjects();
+    this.props.getTasks(context);
   }
 
   _onMenuLeftButtonClick() {
@@ -45,7 +52,7 @@ export default class TaskListView extends React.Component {
   }
 
   render() {
-    const { dispatch, context, projects, children } = this.props;
+    const { context, projects, onSwitchContext, children } = this.props;
 
     const appBar = {
       title: context.value,
@@ -60,7 +67,7 @@ export default class TaskListView extends React.Component {
             ref="nav"
             context={context}
             projects={projects}
-            dispatch={dispatch} />
+            onSwitchContext={onSwitchContext} />
         </div>
     );
   }

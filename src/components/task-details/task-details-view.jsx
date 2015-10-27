@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import Layout from '../main/layout.jsx';
 import { getTask } from '../../actions';
 
-@connect(() => ({})) // HACK: Workaround to get dispatch, should be handled by router
+@connect(() => ({}), { getTask })
 export default class TaskListView extends React.Component {
   static propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
     params: React.PropTypes.object.isRequired,
     children: React.PropTypes.node.isRequired,
+    getTask: React.PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -21,8 +21,8 @@ export default class TaskListView extends React.Component {
   }
 
   componentWillMount() {
-    const { dispatch, params } = this.props;
-    dispatch(getTask(params.uuid));
+    const { params } = this.props;
+    this.props.getTask(params.uuid);
   }
 
   render() {
