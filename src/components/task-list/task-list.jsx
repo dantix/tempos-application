@@ -1,6 +1,8 @@
 import React from 'react';
 import { FloatingActionButton } from 'material-ui';
 
+import { addButton } from './styles.js';
+
 import TaskListItem from './task-list-item.jsx';
 
 import { getTasks } from '../../actions';
@@ -39,12 +41,6 @@ export default class TaskList extends React.Component {
   }
 
   render() {
-    const addButtonStyle = {
-      position: 'fixed',
-      bottom: 20,
-      right: 20,
-    };
-
     const { tasks } = this.props;
 
     const items = tasks
@@ -61,7 +57,7 @@ export default class TaskList extends React.Component {
       <div>
         {items}
 
-        <FloatingActionButton style={addButtonStyle}
+        <FloatingActionButton style={addButton}
                               iconClassName="mdi mdi-plus" />
       </div>
     );

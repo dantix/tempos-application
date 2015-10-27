@@ -1,10 +1,13 @@
 import React from 'react';
 
-import mui, { Card, CardTitle, CardText } from 'material-ui';
-const Colors = mui.Styles.Colors;
+import { Card, CardTitle, CardText } from 'material-ui';
+import * as styles from './styles.js';
+
+import Radium from 'radium';
 
 import moment from 'moment';
 
+@Radium
 export default class TaskListItem extends React.Component {
   static propTypes = {
     task: React.PropTypes.object.isRequired,
@@ -23,42 +26,6 @@ export default class TaskListItem extends React.Component {
   }
 
   render() {
-    const fontSize = '22px';
-
-    const styles = {
-      card: {
-        margin: '10px',
-        cursor: 'pointer',
-      },
-      cardTitle: {
-        padding: '16px 16px 4px 16px',
-      },
-      cardText: {
-        padding: '4px 16px 16px 16px',
-      },
-      recur: {
-        display: 'inline-block',
-        width: '40%',
-      },
-      due: {
-        display: 'inline-block',
-        width: '60%',
-      },
-      icon: {
-        color: Colors.grey600,
-        fontSize: fontSize,
-        'float': 'left',
-      },
-      text: {
-        color: Colors.orange600,
-        'float': 'left',
-        display: 'flex',
-        alignItems: 'center',
-        height: fontSize,
-        marginLeft: '5px',
-      },
-    };
-
     const { task } = this.props;
 
     const due = moment(task.due, 'YYYYMMDDThhmmssZ').format('LLL');
