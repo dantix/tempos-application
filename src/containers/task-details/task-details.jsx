@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Layout from '../../containers/layout/layout.jsx';
-import { getTask } from '../../actions';
+import Layout from 'containers/layout/layout';
+import { getTask } from 'actions';
 
 @connect(() => ({}), { getTask })
 export default class TaskListView extends React.Component {

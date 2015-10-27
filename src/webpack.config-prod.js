@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   entry: {
@@ -25,6 +26,10 @@ module.exports = {
       },
     }),
   ],
+  resolve: {
+    root: path.resolve(__dirname),
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx'],
+  },
   module: {
     loaders: [{
       test: /\.(jsx|js)$/,

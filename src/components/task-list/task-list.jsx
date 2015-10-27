@@ -2,10 +2,9 @@ import React from 'react';
 import { FloatingActionButton } from 'material-ui';
 
 import { addButton } from './styles.js';
+import TaskListItem from './task-list-item';
 
-import TaskListItem from './task-list-item.jsx';
-
-import { getTasks } from '../../actions';
+import { getTasks } from 'actions';
 
 import { connect } from 'react-redux';
 

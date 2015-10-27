@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   devtool: 'eval',
@@ -21,6 +22,10 @@ module.exports = {
       __DEVTOOLS__: true,
     }),
   ],
+  resolve: {
+    root: path.resolve(__dirname),
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx'],
+  },
   module: {
     loaders: [{
       test: /\.(jsx|js)$/,

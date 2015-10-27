@@ -1,12 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
 import thunk from 'redux-thunk';
-import { default as promiseMiddleware } from '../middlewares/promises.js';
-import { default as loggerMiddleware } from '../middlewares/logger.js';
-import rootReducer from '../reducers';
+import { default as promiseMiddleware } from 'middlewares/promises.js';
+import { default as loggerMiddleware } from 'middlewares/logger.js';
+import rootReducer from 'reducers';
 
 import { persistState } from 'redux-devtools';
-import DevTools from '../containers/dev-tools/dev-tools.jsx';
+import DevTools from 'containers/dev-tools/dev-tools';
 
 let createStoreWithMiddleware;
 const middlewares = applyMiddleware(
