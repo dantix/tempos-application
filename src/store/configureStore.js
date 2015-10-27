@@ -6,7 +6,7 @@ import { default as loggerMiddleware } from '../middlewares/logger.js';
 import rootReducer from '../reducers';
 
 import { persistState } from 'redux-devtools';
-import DevTools from './../containers/dev-tools.jsx';
+import DevTools from '../containers/dev-tools/dev-tools.jsx';
 
 let createStoreWithMiddleware;
 const middlewares = applyMiddleware(
