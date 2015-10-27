@@ -10,12 +10,14 @@ import { connect } from 'react-redux';
 @connect(state => ({
   tasks: state.tasks.list,
   context: state.application.context,
-}))
+}), {
+  getTasks,
+})
 export default class TaskList extends React.Component {
   static propTypes = {
     tasks: React.PropTypes.array.isRequired,
     context: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
+    getTasks: React.PropTypes.func.isRequired,
   }
 
   static contextTypes = {
@@ -32,7 +34,7 @@ export default class TaskList extends React.Component {
 
   componentWillReceiveProps(props) {
     if (this.props.context !== props.context) {
-      this.props.dispatch(getTasks(props.context));
+      this.props.getTasks(props.context);
     }
   }
 
