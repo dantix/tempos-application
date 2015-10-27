@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Layout from '../main/layout.jsx';
+import Layout from '../../containers/layout/layout.jsx';
 import { getTask } from '../../actions';
 
 @connect(() => ({}), { getTask })
