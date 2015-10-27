@@ -1,4 +1,4 @@
-import { META_API_CALL } from '../constants/actionTypes.js';
+import { META_API_CALL } from 'constants/actionTypes.js';
 
 export default function promiseMiddleware() {
   return (next) => (action) => {

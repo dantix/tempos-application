@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Layout from '../../containers/layout/layout.jsx';
+import Layout from 'containers/layout/layout';
 
-import NavigationDrawer from '../navigation-drawer/navigation-drawer.jsx';
+import NavigationDrawer from 'containers/navigation-drawer/navigation-drawer';
 
-import { getProjects, getTasks, switchContext } from '../../actions';
+import { getProjects, getTasks, switchContext } from 'actions';
 
 import { connect } from 'react-redux';
 

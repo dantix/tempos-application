@@ -3,21 +3,21 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import Router, { Route, IndexRoute } from 'react-router';
 
-import configureStore from '../../store/configureStore';
+import configureStore from 'store/configureStore';
 const store = configureStore();
 
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import createHashHistory from 'history/lib/createHashHistory';
 
-import DevTools from '../dev-tools/dev-tools.jsx';
+import DevTools from 'containers/dev-tools/dev-tools';
 
-import TaskListView from '../../containers/task-list/task-list.jsx';
-import TaskList from '../../components/task-list/task-list.jsx';
+import TaskListView from 'containers/task-list/task-list';
+import TaskList from 'components/task-list/task-list';
 
-import TaskDetailsView from '../../containers/task-details/task-details.jsx';
-import TaskDetails from '../../components/task-details/task-details.jsx';
+import TaskDetailsView from 'containers/task-details/task-details';
+import TaskDetails from 'components/task-details/task-details';
 
-import lightTheme from '../../themes/light.js';
+import lightTheme from 'themes/light.js';
 
 import themeManager from 'material-ui/lib/styles/theme-manager';
 import themeDecorator from 'material-ui/lib/styles/theme-decorator';
