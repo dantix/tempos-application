@@ -3,6 +3,7 @@ import React from 'react';
 import Radium from 'radium';
 
 import { AppBar, LinearProgress } from 'material-ui';
+import * as styles from './styles.js';
 
 import { connect } from 'react-redux';
 
@@ -23,26 +24,6 @@ export default class Layout extends React.Component {
   }
 
   render() {
-    const styles = {
-      appBar: {
-        position: 'fixed',
-        top: '0px',
-        left: '0px',
-      },
-      pageContainer: {
-        position: 'relative',
-        width: '100%',
-        height: 'calc(100vh - 74px)',
-      },
-      progress: {
-        position: 'fixed',
-        top: '64px',
-      },
-      contentContainer: {
-        marginTop: '74px',
-      },
-    };
-
     const { loading, appBar } = this.props;
 
     let progress;

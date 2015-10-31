@@ -1,15 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Layout from '../main/layout.jsx';
-import * as TaskActions from '../../actions/task-list.js';
+import Layout from 'containers/layout/layout';
+import TaskDetails from 'components/task-details/task-details';
+import { getTask } from 'actions';
 
-@connect(() => ({})) // HACK: Workaround to get dispatch, should be handled by router
+@connect(state => ({
+  task: state.task.current
+}), { getTask })
 export default class TaskListView extends React.Component {
   static propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
     params: React.PropTypes.object.isRequired,
-    children: React.PropTypes.node.isRequired,
+    task: React.PropTypes.object.isRequired,
+    getTask: React.PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -21,10 +24,9 @@ export default class TaskListView extends React.Component {
   }
 
   componentWillMount() {
-    const { dispatch, params } = this.props;
-    dispatch(TaskActions.getTask(params.uuid));
+    const { params } = this.props;
+    this.props.getTask(params.uuid);
   }
-
 
   render() {
     const appBar = {
@@ -35,10 +37,12 @@ export default class TaskListView extends React.Component {
       },
     };
 
-    const { children } = this.props;
+    const { task } = this.props;
 
     return (
-        <Layout appBar={appBar} children={children} />
+        <Layout appBar={appBar}>
+          <TaskDetails task={task} />
+        </Layout>
     );
   }
 }

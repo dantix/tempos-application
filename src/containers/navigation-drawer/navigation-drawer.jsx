@@ -2,8 +2,6 @@ import React from 'react';
 
 import { LeftNav } from 'material-ui';
 
-import * as TaskActions from '../../actions/task-list.js';
-
 let menuItems = [
   { type: 'aggregatedTasks', text: 'All tasks', iconClassName: 'mdi mdi-view-list', current: true },
   { route: 'settings', text: 'Settings', iconClassName: 'mdi mdi-settings' },
@@ -12,7 +10,7 @@ let menuItems = [
 export default class NavigationDrawer extends React.Component {
   static propTypes = {
     projects: React.PropTypes.array.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
+    onSwitchContext: React.PropTypes.func.isRequired,
   };
 
   static childContextTypes = {
@@ -52,14 +50,12 @@ export default class NavigationDrawer extends React.Component {
     if (payload.route) {
       this.context.router.transitionTo(payload.route);
     } else {
-      const { dispatch } = this.props;
-
       const context = {
         type: payload.type,
         value: payload.text,
       };
 
-      dispatch(TaskActions.switchContext(context));
+      this.props.onSwitchContext(context);
     }
   }
 

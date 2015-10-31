@@ -1,19 +1,15 @@
 import React from 'react';
+import Radium from 'radium';
 
-import mui, { FloatingActionButton } from 'material-ui';
-const Colors = mui.Styles.Colors;
+import { FloatingActionButton } from 'material-ui';
 
-import { connect } from 'react-redux';
+import * as styles from './styles.js';
 
-@connect((state) => ({ task: state.task.currentTask }))
+@Radium
 export default class TaskDetails extends React.Component {
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
-  };
-
-  static childContextTypes = {
-    muiTheme: React.PropTypes.object,
   };
 
   constructor(props) {
@@ -22,33 +18,6 @@ export default class TaskDetails extends React.Component {
 
   render() {
     const { task } = this.props;
-
-    const styles = {
-      header: {
-        display: 'inline-block',
-        position: 'fixed',
-        top: '64px',
-        width: 'calc(100% - 64px)',
-        zIndex: 1001,
-        backgroundColor: Colors.indigo900,
-        padding: '15px 0 0 64px',
-        color: 'white',
-        height: '30px',
-
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-      },
-      actionButton: {
-        position: 'fixed',
-        top: '90px',
-        zIndex: 1002,
-        left: '12px',
-      },
-      content: {
-        marginTop: '140px',
-      },
-    };
 
     return (
         <div>

@@ -1,14 +1,9 @@
 import React from 'react';
 import { FloatingActionButton } from 'material-ui';
 
-import TaskListItem from './task-list-item.jsx';
+import { addButton } from './styles.js';
+import TaskListItem from './task-list-item';
 
-import { connect } from 'react-redux';
-
-@connect((state) => ({
-  tasks: state.task.tasks,
-  context: state.task.context,
-}))
 export default class TaskList extends React.Component {
   static propTypes = {
     tasks: React.PropTypes.array.isRequired,
@@ -27,12 +22,6 @@ export default class TaskList extends React.Component {
   }
 
   render() {
-    const addButtonStyle = {
-      position: 'fixed',
-      bottom: 20,
-      right: 20,
-    };
-
     const { tasks } = this.props;
 
     const items = tasks
@@ -49,7 +38,7 @@ export default class TaskList extends React.Component {
       <div>
         {items}
 
-        <FloatingActionButton style={addButtonStyle}
+        <FloatingActionButton style={addButton}
                               iconClassName="mdi mdi-plus" />
       </div>
     );
