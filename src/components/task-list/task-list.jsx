@@ -4,21 +4,9 @@ import { FloatingActionButton } from 'material-ui';
 import { addButton } from './styles.js';
 import TaskListItem from './task-list-item';
 
-import { getTasks } from 'actions';
-
-import { connect } from 'react-redux';
-
-@connect(state => ({
-  tasks: state.tasks.list,
-  context: state.application.context,
-}), {
-  getTasks,
-})
 export default class TaskList extends React.Component {
   static propTypes = {
     tasks: React.PropTypes.array.isRequired,
-    context: React.PropTypes.object.isRequired,
-    getTasks: React.PropTypes.func.isRequired,
   }
 
   static contextTypes = {
@@ -31,12 +19,6 @@ export default class TaskList extends React.Component {
 
   constructor(props) {
     super(props);
-  }
-
-  componentWillReceiveProps(props) {
-    if (this.props.context !== props.context) {
-      this.props.getTasks(props.context);
-    }
   }
 
   render() {

@@ -5,10 +5,7 @@ import { FloatingActionButton } from 'material-ui';
 
 import * as styles from './styles.js';
 
-import { connect } from 'react-redux';
-
 @Radium
-@connect(state => ({ task: state.task.current }))
 export default class TaskDetails extends React.Component {
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,

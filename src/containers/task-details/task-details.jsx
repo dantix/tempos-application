@@ -2,13 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Layout from 'containers/layout/layout';
+import TaskDetails from 'components/task-details/task-details';
 import { getTask } from 'actions';
 
-@connect(() => ({}), { getTask })
+@connect(state => ({
+  task: state.task.current
+}), { getTask })
 export default class TaskListView extends React.Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired,
-    children: React.PropTypes.node.isRequired,
+    task: React.PropTypes.object.isRequired,
     getTask: React.PropTypes.func.isRequired,
   };
 
@@ -34,10 +37,12 @@ export default class TaskListView extends React.Component {
       },
     };
 
-    const { children } = this.props;
+    const { task } = this.props;
 
     return (
-        <Layout appBar={appBar} children={children} />
+        <Layout appBar={appBar}>
+          <TaskDetails task={task} />
+        </Layout>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Provider } from 'react-redux';
-import Router, { Route, IndexRoute } from 'react-router';
+import Router, { Route, IndexRoute, Redirect } from 'react-router';
 
 import configureStore from 'store/configureStore';
 const store = configureStore();
@@ -12,10 +12,7 @@ import createHashHistory from 'history/lib/createHashHistory';
 import DevTools from 'containers/dev-tools/dev-tools';
 
 import TaskListView from 'containers/task-list/task-list';
-import TaskList from 'components/task-list/task-list';
-
 import TaskDetailsView from 'containers/task-details/task-details';
-import TaskDetails from 'components/task-details/task-details';
 
 import lightTheme from 'themes/light.js';
 
@@ -35,12 +32,9 @@ export default class extends React.Component {
 
     const routes = (
       <Route>
-        <Route component={TaskListView} path="/" >
-          <IndexRoute component={TaskList} />
-          <Route component={TaskDetailsView}>
-            <Route component={TaskDetails} path="/tasks/:uuid" />
-          </Route>
-        </Route>
+        <Route component={TaskListView} path="tasks" />
+        <Route component={TaskDetailsView} path="tasks/:uuid" />
+        <Redirect from="/" to="/tasks" />
       </Route>
     );
 

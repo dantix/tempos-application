@@ -3,6 +3,7 @@ import React from 'react';
 import Layout from 'containers/layout/layout';
 
 import NavigationDrawer from 'containers/navigation-drawer/navigation-drawer';
+import TaskList from 'components/task-list/task-list';
 
 import { getProjects, getTasks, switchContext } from 'actions';
 
@@ -11,6 +12,7 @@ import { connect } from 'react-redux';
 @connect(state => ({
   projects: state.projects.list,
   context: state.application.context,
+  tasks: state.tasks.list
 }), {
   getProjects,
   getTasks,
@@ -20,7 +22,6 @@ export default class TaskListView extends React.Component {
   static propTypes = {
     projects: React.PropTypes.array.isRequired,
     context: React.PropTypes.object.isRequired,
-    children: React.PropTypes.node.isRequired,
     getProjects: React.PropTypes.func.isRequired,
     getTasks: React.PropTypes.func.isRequired,
     onSwitchContext: React.PropTypes.func.isRequired,
@@ -45,8 +46,14 @@ export default class TaskListView extends React.Component {
     this.refs.nav.toggle();
   }
 
+  componentWillReceiveProps(props) {
+    if (this.props.context !== props.context) {
+      this.props.getTasks(props.context);
+    }
+  }
+
   render() {
-    const { context, projects, onSwitchContext, children } = this.props;
+    const { context, projects, tasks, onSwitchContext, children } = this.props;
 
     const appBar = {
       title: context.value,
@@ -56,7 +63,9 @@ export default class TaskListView extends React.Component {
 
     return (
         <div>
-          <Layout appBar={appBar} children={children} />
+          <Layout appBar={appBar}>
+            <TaskList tasks={tasks} />
+          </Layout>
           <NavigationDrawer
             ref="nav"
             context={context}
