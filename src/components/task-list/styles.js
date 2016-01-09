@@ -28,13 +28,13 @@ export const due = {
 
 export const icon = {
   color: Colors.grey600,
-  fontSize: fontSize,
-  'float': 'left',
+  fontSize,
+  float: 'left',
 };
 
 export const text = {
   color: Colors.orange600,
-  'float': 'left',
+  float: 'left',
   display: 'flex',
   alignItems: 'center',
   height: fontSize,
@@ -46,4 +46,3 @@ export const addButton = {
   bottom: 20,
   right: 20,
 };
-

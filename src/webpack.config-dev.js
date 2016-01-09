@@ -30,14 +30,14 @@ module.exports = {
     loaders: [{
       test: /\.(jsx|js)$/,
       exclude: /(node_modules|bower_components)/,
-      loaders: [ 'babel' ],
+      loaders: ['babel'],
     }, {
       test: /\.css$/,
       exclude: /(node_modules|bower_components)/,
       loader: 'css',
     }, {
       test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9]*)?$/,
-      loader: 'base64-font-loader',
+      loader: 'base64-font',
     }],
   },
 };

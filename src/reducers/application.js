@@ -8,14 +8,14 @@ const initialState = {
   loading: true,
 };
 
-export default function application(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
-  case ActionTypes.APPLICATION_SWITCH_CONTEXT:
-    return {
-      ...state,
-      context: action.payload.context,
-    };
-  default:
-    return state;
+    case ActionTypes.APPLICATION_SWITCH_CONTEXT:
+      return {
+        ...state,
+        context: action.payload.context,
+      };
+    default:
+      return state;
   }
-}
+};

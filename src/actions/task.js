@@ -10,7 +10,7 @@ function getTask(id) {
   });
 }
 
-export default function(id) {
+export default (id) => {
   const promise = getTask(id);
 
   return {
@@ -25,4 +25,4 @@ export default function(id) {
       promise,
     },
   };
-}
+};

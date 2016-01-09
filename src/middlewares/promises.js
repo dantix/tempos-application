@@ -1,6 +1,6 @@
 import { META_API_CALL } from 'constants/actionTypes.js';
 
-export default function promiseMiddleware() {
+export default () => {
   return (next) => (action) => {
     const { promise, types, ...rest } = action.payload;
     if (action.type !== META_API_CALL) {
@@ -14,4 +14,4 @@ export default function promiseMiddleware() {
       error => next({ payload: { ...rest, error, loading: false }, error: true, type: FAILURE })
     );
   };
-}
+};

@@ -20,8 +20,9 @@ class TaskListItem extends React.Component {
     super(props);
   }
 
-  _handleClick(path, params) {
-    this.context.history.pushState(null, `/tasks/${params.uuid}`);
+  _handleClick() {
+    const { task } = this.props;
+    this.context.history.pushState(null, `/tasks/${task.uuid}`);
   }
 
   render() {
@@ -41,11 +42,13 @@ class TaskListItem extends React.Component {
 
     return (
       <Card key={ task.uuid }
-            style={ styles.card }
-            onClick={ () => this._handleClick('task-details', { uuid: task.uuid }) } >
+        style={ styles.card }
+        onClick={ ::this._handleClick }
+      >
         <CardTitle style={ styles.cardTitle }
-                   title={ task.description }
-                   subtitle={ task.project }/>
+          title={ task.description }
+          subtitle={ task.project }
+        />
         <CardText style={ styles.cardText }>
           <div style={ styles.due }>
             <span style={ styles.icon } className="mdi mdi-clock"></span>

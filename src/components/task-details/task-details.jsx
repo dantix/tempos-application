@@ -7,7 +7,6 @@ import * as styles from './styles.js';
 
 class TaskDetails extends React.Component {
   static propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
   };
 
@@ -24,9 +23,11 @@ class TaskDetails extends React.Component {
             <div style={ styles.header }>
               {task.description}
             </div>
-            <FloatingActionButton style={ styles.actionButton }
-                                  iconClassName="mdi mdi-pencil"
-                                  mini />
+            <FloatingActionButton
+              style={ styles.actionButton }
+              iconClassName="mdi mdi-pencil"
+              mini
+            />
           </div>
           <div style={ styles.content }>
             <div>

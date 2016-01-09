@@ -5,23 +5,21 @@ const initialState = {
   loading: false,
 };
 
-export default function task(state = initialState, action) {
-  state.loading = action.loading;
-
+export default (state = initialState, action) => {
   switch (action.type) {
-  case ActionTypes.TASK_DETAILS_GET:
-    return {
-      ...state,
-      current: {},
-      loading: true,
-    };
-  case ActionTypes.TASK_DETAILS_GET_SUCCESS:
-    return {
-      ...state,
-      current: action.payload.result[0],
-      loading: false,
-    };
-  default:
-    return state;
+    case ActionTypes.TASK_DETAILS_GET:
+      return {
+        ...state,
+        current: {},
+        loading: true,
+      };
+    case ActionTypes.TASK_DETAILS_GET_SUCCESS:
+      return {
+        ...state,
+        current: action.payload.result[0],
+        loading: false,
+      };
+    default:
+      return state;
   }
-}
+};

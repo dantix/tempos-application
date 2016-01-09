@@ -6,7 +6,7 @@ import TaskDetails from 'components/task-details/task-details';
 import { getTask } from 'actions';
 
 const connector = connect(state => ({
-  task: state.task.current
+  task: state.task.current,
 }), { getTask });
 
 class TaskListView extends React.Component {

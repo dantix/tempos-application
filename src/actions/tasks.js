@@ -15,7 +15,7 @@ function getTasks(context) {
   });
 }
 
-export default function(context) {
+export default (context) => {
   const promise = getTasks(context);
 
   return {
@@ -30,4 +30,4 @@ export default function(context) {
       promise,
     },
   };
-}
+};
