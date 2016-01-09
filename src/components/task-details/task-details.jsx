@@ -1,12 +1,11 @@
 import React from 'react';
-import Radium from 'radium';
+import radium from 'radium';
 
 import { FloatingActionButton } from 'material-ui';
 
 import * as styles from './styles.js';
 
-@Radium
-export default class TaskDetails extends React.Component {
+class TaskDetails extends React.Component {
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,
     task: React.PropTypes.object.isRequired,
@@ -42,3 +41,5 @@ export default class TaskDetails extends React.Component {
     );
   }
 }
+
+export default radium(TaskDetails);
