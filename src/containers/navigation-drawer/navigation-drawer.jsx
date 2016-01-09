@@ -67,7 +67,7 @@ export default class NavigationDrawer extends React.Component {
       };
     });
 
-    menuItems = [ menuItems[0], ...projectList, menuItems[menuItems.length - 1] ];
+    menuItems = [menuItems[0], ...projectList, menuItems[menuItems.length - 1]];
 
     return (
       <LeftNav
@@ -76,7 +76,8 @@ export default class NavigationDrawer extends React.Component {
         isInitiallyOpen={false}
         menuItems={menuItems}
         selectedIndex={ this._getSelectedIndex() }
-        onChange={ this._onLeftNavChange } />
+        onChange={ this._onLeftNavChange }
+      />
     );
   }
 }

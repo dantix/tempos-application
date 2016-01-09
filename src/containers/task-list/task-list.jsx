@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 const connector = connect(state => ({
   projects: state.projects.list,
   context: state.application.context,
-  tasks: state.tasks.list
+  tasks: state.tasks.list,
 }), {
   getProjects,
   getTasks,
@@ -22,6 +22,7 @@ const connector = connect(state => ({
 export default class TaskListView extends React.Component {
   static propTypes = {
     projects: React.PropTypes.array.isRequired,
+    tasks: React.PropTypes.array.isRequired,
     context: React.PropTypes.object.isRequired,
     getProjects: React.PropTypes.func.isRequired,
     getTasks: React.PropTypes.func.isRequired,
@@ -43,18 +44,18 @@ export default class TaskListView extends React.Component {
     this.props.getTasks(context);
   }
 
-  _onMenuLeftButtonClick() {
-    this.refs.nav.toggle();
-  }
-
   componentWillReceiveProps(props) {
     if (this.props.context !== props.context) {
       this.props.getTasks(props.context);
     }
   }
 
+  _onMenuLeftButtonClick() {
+    this.refs.nav.toggle();
+  }
+
   render() {
-    const { context, projects, tasks, onSwitchContext, children } = this.props;
+    const { context, projects, tasks, onSwitchContext } = this.props;
 
     const appBar = {
       title: context.value,
@@ -71,7 +72,8 @@ export default class TaskListView extends React.Component {
             ref="nav"
             context={context}
             projects={projects}
-            onSwitchContext={onSwitchContext} />
+            onSwitchContext={onSwitchContext}
+          />
         </div>
     );
   }

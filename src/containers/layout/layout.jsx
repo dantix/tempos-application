@@ -35,11 +35,12 @@ class Layout extends React.Component {
     return (
       <div style={styles.pageContainer}>
         <AppBar title={ appBar.title }
-                style={ styles.appBar }
-                iconClassNameLeft={ appBar.leftIconClass }
-                iconClassNameRight={ appBar.rightIconClass }
-                onLeftIconButtonTouchTap={ appBar.onLeftClick }
-                onRightIconButtonTouchTap={ appBar.onRightClick } />
+          style={ styles.appBar }
+          iconClassNameLeft={ appBar.leftIconClass }
+          iconClassNameRight={ appBar.rightIconClass }
+          onLeftIconButtonTouchTap={ appBar.onLeftClick }
+          onRightIconButtonTouchTap={ appBar.onRightClick }
+        />
         {progress}
         <div style={styles.contentContainer}>
           {this.props.children}

@@ -10,7 +10,7 @@ function getProjects() {
   });
 }
 
-export default function() {
+export default () => {
   const promise = getProjects();
 
   return {
@@ -24,4 +24,4 @@ export default function() {
       promise,
     },
   };
-}
+};

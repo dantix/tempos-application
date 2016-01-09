@@ -39,7 +39,8 @@ export default class TaskList extends React.Component {
         {items}
 
         <FloatingActionButton style={addButton}
-                              iconClassName="mdi mdi-plus" />
+          iconClassName="mdi mdi-plus"
+        />
       </div>
     );
   }
