@@ -1,17 +1,16 @@
 import React from 'react';
-
-import Radium from 'radium';
+import radium from 'radium';
 
 import { AppBar, LinearProgress } from 'material-ui';
 import * as styles from './styles.js';
 
 import { connect } from 'react-redux';
 
-@connect(state => ({
+const connector = connect(state => ({
   loading: state.task.loading,
-}))
-@Radium
-export default class Layout extends React.Component {
+}));
+
+class Layout extends React.Component {
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,
     loading: React.PropTypes.bool,
@@ -49,3 +48,5 @@ export default class Layout extends React.Component {
     );
   }
 }
+
+export default connector(radium(Layout));

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-require('babel/polyfill');
+require('babel-polyfill');
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();

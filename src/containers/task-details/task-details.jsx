@@ -5,10 +5,11 @@ import Layout from 'containers/layout/layout';
 import TaskDetails from 'components/task-details/task-details';
 import { getTask } from 'actions';
 
-@connect(state => ({
+const connector = connect(state => ({
   task: state.task.current
-}), { getTask })
-export default class TaskListView extends React.Component {
+}), { getTask });
+
+class TaskListView extends React.Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired,
     task: React.PropTypes.object.isRequired,
@@ -46,3 +47,5 @@ export default class TaskListView extends React.Component {
     );
   }
 }
+
+export default connector(TaskListView);
