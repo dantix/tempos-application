@@ -9,7 +9,7 @@ import { getProjects, getTasks, switchContext } from 'actions';
 
 import { connect } from 'react-redux';
 
-@connect(state => ({
+const connector = connect(state => ({
   projects: state.projects.list,
   context: state.application.context,
   tasks: state.tasks.list
@@ -17,7 +17,8 @@ import { connect } from 'react-redux';
   getProjects,
   getTasks,
   onSwitchContext: switchContext,
-})
+});
+
 export default class TaskListView extends React.Component {
   static propTypes = {
     projects: React.PropTypes.array.isRequired,
@@ -75,3 +76,5 @@ export default class TaskListView extends React.Component {
     );
   }
 }
+
+export default connector(TaskListView);

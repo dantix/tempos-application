@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Provider } from 'react-redux';
-import Router, { Route, IndexRoute, Redirect } from 'react-router';
+import Router, { Route, IndexRoute } from 'react-router';
 
 import configureStore from 'store/configureStore';
 const store = configureStore();
@@ -12,15 +12,18 @@ import createHashHistory from 'history/lib/createHashHistory';
 import DevTools from 'containers/dev-tools/dev-tools';
 
 import TaskListView from 'containers/task-list/task-list';
+import TaskList from 'components/task-list/task-list';
+
 import TaskDetailsView from 'containers/task-details/task-details';
+import TaskDetails from 'components/task-details/task-details';
 
 import lightTheme from 'themes/light.js';
 
 import themeManager from 'material-ui/lib/styles/theme-manager';
 import themeDecorator from 'material-ui/lib/styles/theme-decorator';
 
-@themeDecorator(themeManager.getMuiTheme(lightTheme))
-export default class extends React.Component {
+const themed = themeDecorator(themeManager.getMuiTheme(lightTheme));
+class App extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -32,9 +35,12 @@ export default class extends React.Component {
 
     const routes = (
       <Route>
-        <Route component={TaskListView} path="tasks" />
-        <Route component={TaskDetailsView} path="tasks/:uuid" />
-        <Redirect from="/" to="/tasks" />
+        <Route component={TaskListView} path="/" >
+          <IndexRoute component={TaskList} />
+          <Route component={TaskDetailsView}>
+            <Route component={TaskDetails} path="/tasks/:uuid" />
+          </Route>
+        </Route>
       </Route>
     );
 
@@ -53,3 +59,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default themed(App);

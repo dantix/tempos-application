@@ -3,12 +3,11 @@ import React from 'react';
 import { Card, CardTitle, CardText } from 'material-ui';
 import * as styles from './styles.js';
 
-import Radium from 'radium';
+import radium from 'radium';
 
 import moment from 'moment';
 
-@Radium
-export default class TaskListItem extends React.Component {
+class TaskListItem extends React.Component {
   static propTypes = {
     task: React.PropTypes.object.isRequired,
   }
@@ -58,3 +57,5 @@ export default class TaskListItem extends React.Component {
     );
   }
 }
+
+export default radium(TaskListItem);
